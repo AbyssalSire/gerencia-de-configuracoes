@@ -1,14 +1,14 @@
-# Gerência de configurações
+# Gerência de configurações Código SO36B Turma ES61 (2021_01)
 
 
-Universidade Tecnológica Federal do Paraná
+### Universidade Tecnológica Federal do Paraná
 
-Disciplina código SO36B
-
-Turma ES61 (2021_01)
 
 Professor Alexandre L'Erario
 
 Integrantes do grupo:
 
+Caroline Marques,2053640
+
 Lucas Malheiros, 1835793
+
