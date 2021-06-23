@@ -10,5 +10,7 @@ Integrantes do grupo:
 
 Caroline Marques,2053640
 
+Cassio Gomes Pereira, 2101017
+
 Lucas Malheiros, 1835793
 
