@@ -32,7 +32,7 @@ public class MangaDAO {
 	// private static final String alterar = "UPDATE lista_mangas SET nome_manga=?,
 	// descricao_manga=?, lista_volumes=? WHERE id_usuario = ?;";
 	private static final String alterarDescricao = "UPDATE lista_mangas SET descricao_manga=? WHERE id_usuario = ? AND nome_manga=?;";
-	private static final String alterarListaManga = "UPDATE lista SET volumes=? WHERE nome_manga=?, id_usuario=?;";
+	private static final String alterarListaManga = "UPDATE lista_mangas SET lista_volumes=? WHERE nome_manga=? AND id_usuario=?;";
 	private static final String excluir = "DELETE FROM lista_mangas WHERE id_usuario=? AND nome_manga = ?;";
 	private static final String excluirUsuario = "DELETE FROM lista_mangas WHERE id_usuario=?;";
 
@@ -207,9 +207,9 @@ public class MangaDAO {
 				manga.DesconverterListaVolumes();
 				pstdados.setString(1, manga.getListaVolumes2().toString());
 			}
-
-			pstdados.setInt(2, id);
-			pstdados.setString(3, manga.getTitulo());
+			
+			pstdados.setString(2, manga.getTitulo());
+			pstdados.setInt(3, id);
 			int resposta = pstdados.executeUpdate();
 			pstdados.close();
 			if (resposta == 1) {
@@ -246,8 +246,8 @@ public class MangaDAO {
 			Collections.sort(listaEnvia);
 			manga.DesconverterListaVolumes();
 			pstdados.setString(1, manga.getListaVolumes2().toString());
-			pstdados.setInt(2, id);
-			pstdados.setString(3, manga.getTitulo());
+			pstdados.setString(2, manga.getTitulo());			
+			pstdados.setInt(3, id);
 			int resposta = pstdados.executeUpdate();
 			pstdados.close();
 			if (resposta == 1) {
