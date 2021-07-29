@@ -23,17 +23,8 @@ import java.awt.event.FocusEvent;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.swing.JTextArea;
-
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.view.JasperViewer;
 
 public class Janela_Main extends JFrame {
 
@@ -71,14 +62,14 @@ public class Janela_Main extends JFrame {
 		setResizable(false);
 		setTitle("Lista de Mangás");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 290, 375);
+		setBounds(100, 100, 290, 350);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		JButton btnIrParaAdicionar = new JButton("Adicionar mangá");
-		btnIrParaAdicionar.setBounds(110, 312, 150, 23);
+		btnIrParaAdicionar.setBounds(110, 277, 150, 23);
 		contentPane.add(btnIrParaAdicionar);
 
 		JLabel lblPesquisa = new JLabel("Pesquisa por título");
@@ -134,7 +125,7 @@ public class Janela_Main extends JFrame {
 
 		JLabel lblAdicionar = new JLabel("Adicionar novo mangá à lista");
 		lblAdicionar.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblAdicionar.setBounds(10, 129, 239, 30);
+		lblAdicionar.setBounds(10, 94, 239, 30);
 		contentPane.add(lblAdicionar);
 
 		txtTituloAdicao = new JTextField();
@@ -155,7 +146,7 @@ public class Janela_Main extends JFrame {
 		});
 		txtTituloAdicao.setFont(new Font("Tahoma", Font.ITALIC, 11));
 		txtTituloAdicao.setText("Insira título aqui...");
-		txtTituloAdicao.setBounds(10, 170, 250, 20);
+		txtTituloAdicao.setBounds(10, 135, 250, 20);
 		contentPane.add(txtTituloAdicao);
 		txtTituloAdicao.setColumns(10);
 
@@ -191,7 +182,7 @@ public class Janela_Main extends JFrame {
 		textAreaDescricao.setFont(new Font("Tahoma", Font.ITALIC, 11));
 		textAreaDescricao.setLineWrap(true);
 		textAreaDescricao.setText("Insira a descrição aqui");
-		textAreaDescricao.setBounds(10, 201, 250, 100);
+		textAreaDescricao.setBounds(10, 166, 250, 100);
 		contentPane.add(textAreaDescricao);
 		
 		JButton btnPerfil = new JButton("Ver perfil");
@@ -205,32 +196,6 @@ public class Janela_Main extends JFrame {
 		btnPerfil.setBounds(160, 6, 100, 23);
 		contentPane.add(btnPerfil);
 		
-		JButton btnRelatorioUsuarioAtivo = new JButton("Mostrar todos os mangás em forma de relatório");
-		btnRelatorioUsuarioAtivo.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		btnRelatorioUsuarioAtivo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JasperPrint impressao;
-				try {
-					Map parametro = new HashMap();
-					parametro.put("id_usuario", id);
-
-					// caso seja necessário, compila o relatório (caso deseja usar o jrxml)
-					JasperReport JR_compilado = JasperCompileManager.compileReport(relatorio_usuario_ativo);
-
-					// preenchimento do relatorio com a conexao e parametros
-					impressao = JasperFillManager.fillReport(JR_compilado, parametro, con);
-
-					// opcao de visualizar o relatorio
-					JasperViewer.viewReport(impressao, false);
-
-				} catch (JRException erro) {
-					System.err.println("Não foi possível exportar o relatório.\n\n" + erro);
-				}
-			}
-		});
-		btnRelatorioUsuarioAtivo.setBounds(10, 94, 250, 23);
-		
-		contentPane.add(btnRelatorioUsuarioAtivo);
 		btnIrParaAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (txtTituloAdicao.getText().equals("") || txtTituloAdicao.getText().equals("Insira título aqui...")) {

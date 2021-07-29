@@ -70,7 +70,7 @@ public class JDBCUtil {
 				}
 			}
 		} catch (SQLException erro) {
-			System.out.println(erro);
+			System.out.println(erro.getMessage());
 			return false;
 		}
 		return false;
@@ -85,7 +85,7 @@ public class JDBCUtil {
 				}
 			}
 		} catch (SQLException erro) {
-			System.out.println(erro);
+			System.out.println(erro.getMessage());
 			return false;
 		}
 		return false;
@@ -100,7 +100,7 @@ public class JDBCUtil {
 				}
 			}
 		} catch (SQLException erro) {
-			System.out.println(erro);
+			System.out.println(erro.getMessage());
 			return false;
 		}
 		return false;
@@ -115,7 +115,7 @@ public class JDBCUtil {
 				}
 			}
 		} catch (SQLException erro) {
-			System.out.println(erro);
+			System.out.println(erro.getMessage());
 			return false;
 		}
 		return false;

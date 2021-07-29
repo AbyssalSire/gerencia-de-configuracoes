@@ -107,8 +107,9 @@ public class MangaDAO {
 			}
 		} catch (SQLException erro) {
 			JOptionPane.showMessageDialog(contentPane, "Erro no SQL", "Mensagem de erro", JOptionPane.ERROR_MESSAGE);
-			System.out.println("Erro na execução da inserção = " + erro);
+			System.out.println("Erro na execução da inserção = " + erro.getMessage());
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			JOptionPane.showMessageDialog(contentPane, "Título já adicionado à lista", "Mensagem de erro",
 					JOptionPane.ERROR_MESSAGE);
 		}
@@ -124,6 +125,7 @@ public class MangaDAO {
 			rsdados = pstdados.executeQuery();
 			return true;
 		} catch (SQLException erro) {
+			System.out.println(erro.getMessage());
 			System.out.println("Erro ao executar consulta = " + erro);
 		}
 		return false;
@@ -144,6 +146,7 @@ public class MangaDAO {
 			}
 			return m;
 		} catch (SQLException erro) {
+			System.out.println(erro.getMessage());
 			JOptionPane.showMessageDialog(contentPane, "Manga nao encontrado", "Mensagem de erro",
 					JOptionPane.ERROR_MESSAGE);
 		}
@@ -177,9 +180,11 @@ public class MangaDAO {
 				return false;
 			}
 		} catch (SQLException e) {
+			System.out.println(e.getMessage());
 			JOptionPane.showMessageDialog(contentPane, e.getStackTrace(), "Mensagem de erro",
 					JOptionPane.ERROR_MESSAGE);
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			JOptionPane.showMessageDialog(contentPane, e.getStackTrace(), "Mensagem de erro",
 					JOptionPane.ERROR_MESSAGE);
 		}
@@ -196,7 +201,6 @@ public class MangaDAO {
 			pstdados = connection.prepareStatement(alterarListaManga, tipo, concorrencia);
 			if (manga.getListaVolumes() == null || manga.getListaVolumes2() == null) {
 				pstdados.setString(1, valor);
-				System.out.println(valor);
 			} else {
 				manga.ConverterListaVolumes(manga.getListaVolumes2().toString());
 				ArrayList<Integer> listaEnvia = manga.getListaVolumes();
@@ -207,10 +211,11 @@ public class MangaDAO {
 				manga.DesconverterListaVolumes();
 				pstdados.setString(1, manga.getListaVolumes2().toString());
 			}
-			
+
 			pstdados.setString(2, manga.getTitulo());
 			pstdados.setInt(3, id);
 			int resposta = pstdados.executeUpdate();
+			System.out.println("ok");
 			pstdados.close();
 			if (resposta == 1) {
 				JOptionPane.showMessageDialog(contentPane, "Adicionado com sucesso", "Mensagem de sucesso",
@@ -221,13 +226,15 @@ public class MangaDAO {
 				throw new Exception();
 			}
 		} catch (SQLException e) {
-			System.err.println(e.getStackTrace());
+			System.out.println(e.getMessage());
 			JOptionPane.showMessageDialog(contentPane, e.getStackTrace(), "Mensagem de erro",
 					JOptionPane.ERROR_MESSAGE);
 		} catch (NumberFormatException e) {
+			System.out.println(e.getMessage());
 			JOptionPane.showMessageDialog(contentPane, "Apenas números por favor", "Mensagem de erro",
 					JOptionPane.ERROR_MESSAGE);
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			JOptionPane.showMessageDialog(contentPane, "Numero já adicionado", "Mensagem de erro",
 					JOptionPane.ERROR_MESSAGE);
 		}
@@ -246,7 +253,7 @@ public class MangaDAO {
 			Collections.sort(listaEnvia);
 			manga.DesconverterListaVolumes();
 			pstdados.setString(1, manga.getListaVolumes2().toString());
-			pstdados.setString(2, manga.getTitulo());			
+			pstdados.setString(2, manga.getTitulo());
 			pstdados.setInt(3, id);
 			int resposta = pstdados.executeUpdate();
 			pstdados.close();
@@ -259,7 +266,7 @@ public class MangaDAO {
 				throw new Exception();
 			}
 		} catch (SQLException e) {
-			System.err.println(e.getStackTrace());
+			System.err.println(e.getMessage());
 			JOptionPane.showMessageDialog(contentPane, e.getStackTrace(), "Mensagem de erro",
 					JOptionPane.ERROR_MESSAGE);
 		} catch (NumberFormatException e) {

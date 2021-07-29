@@ -20,13 +20,6 @@ import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.view.JasperViewer;
-
 public class Janela_Inicial {
 
 	UsuarioDAO u = new UsuarioDAO();
@@ -79,7 +72,7 @@ public class Janela_Inicial {
 	private void initialize() {
 		frmListaDeMangs = new JFrame();
 		frmListaDeMangs.setTitle("Lista de Mangás");
-		frmListaDeMangs.setBounds(100, 100, 300, 300);
+		frmListaDeMangs.setBounds(100, 100, 300, 230);
 		frmListaDeMangs.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmListaDeMangs.getContentPane().setLayout(null);
 		contentPane = new JPanel();
@@ -135,52 +128,6 @@ public class Janela_Inicial {
 		lblNewLabel_2.setBounds(65, 11, 115, 34);
 		frmListaDeMangs.getContentPane().add(lblNewLabel_2);
 
-		JButton btnRelatorioUsuarios = new JButton("Relatório com Dados do Usuários");
-		btnRelatorioUsuarios.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JasperPrint impressao;
-				try {
-
-					// caso seja necessário, compila o relatório (caso deseja usar o jrxml)
-					JasperReport JR_compilado = JasperCompileManager.compileReport(relatorio_fonte_usuario);
-
-					// preenchimento do relatorio com a conexao e parametros
-					impressao = JasperFillManager.fillReport(JR_compilado, null, con);
-
-					// opcao de visualizar o relatorio
-					JasperViewer.viewReport(impressao, false);
-
-				} catch (JRException erro) {
-					System.err.println("Não foi possível exportar o relatório.\n\n" + erro);
-				}
-			}
-		});
-		btnRelatorioUsuarios.setBounds(10, 186, 263, 23);
-		frmListaDeMangs.getContentPane().add(btnRelatorioUsuarios);
-
-		JButton btnRelatorioListas = new JButton("Relatório de Listas de mangás por usuário");
-		btnRelatorioListas.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		btnRelatorioListas.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JasperPrint impressao;
-				try {
-
-					// caso seja necessário, compila o relatório (caso deseja usar o jrxml)
-					JasperReport JR_compilado = JasperCompileManager.compileReport(relatorio_fonte_lista);
-
-					// preenchimento do relatorio com a conexao e parametros
-					impressao = JasperFillManager.fillReport(JR_compilado, null, con);
-
-					// opcao de visualizar o relatorio
-					JasperViewer.viewReport(impressao, false);
-
-				} catch (JRException erro) {
-					System.err.println("Não foi possível exportar o relatório.\n\n" + erro);
-				}
-			}
-		});
-		btnRelatorioListas.setBounds(10, 220, 263, 23);
-		frmListaDeMangs.getContentPane().add(btnRelatorioListas);
 
 	}
 }

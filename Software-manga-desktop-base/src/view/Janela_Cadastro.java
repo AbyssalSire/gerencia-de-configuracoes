@@ -54,7 +54,7 @@ public class Janela_Cadastro {
 		frmCadastro = new JFrame();
 		frmCadastro.setTitle("Cadastro");
 		
-		frmCadastro.setBounds(100, 100, 250, 300);
+		frmCadastro.setBounds(100, 100, 250, 245);
 		frmCadastro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmCadastro.getContentPane().setLayout(null);
 		
