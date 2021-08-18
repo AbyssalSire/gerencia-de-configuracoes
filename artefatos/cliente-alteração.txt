@@ -1,0 +1,5 @@
+Solicitação de Alteração
+
+Por meio desse, require-se em nome do cliente, uma solicitação de alteração do projeto em questão.
+Dado o requisito não funcional de login, solicita-se:
+- Alteração das cores dos botões "login" e "cadastrar" para a "verde" e "amarelo" respectivamente.
