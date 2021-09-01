@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="software-manga-desktop-base" default="build" basedir=".">
+<project name="software-manga-desktop-base" basedir=".">
 
 <property name="name" value="software-manga-desktop-base"/>
 <property name="src" value="src"/>
@@ -17,7 +17,7 @@
 </target>
 
 <target name="javadoc" description="Geração de javadocs">
-<javadoc sourcepath="${src}" destdir="${docs}" packagenames="linhacodigo.*"/>
+<javadoc sourcepath="${src}" destdir="${docs}" packagenames="software-manga-desktop-base.*"/>
 </target>
 <target name="run" depends="compile,jar,clean" description="inicia aplicação">
 <java classname="${main}" classpath="${bin}/${name}.jar"/>
