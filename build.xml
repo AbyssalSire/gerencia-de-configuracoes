@@ -1,26 +1,38 @@
-<?xml version="1.0"?>
-<project name="software-manga-desktop-base" default="build" basedir=".">
+<project name="software-manga-desktop-base" default="dist" basedir=".">
+  <description>
+    Build da aplicacao
+  </description>
+  <!-- set global properties for this build -->
+  <property name="src" location="src"/>
+  <property name="build" location="build"/>
+  <property name="dist" location="dist"/>
 
-<property name="name" value="software-manga-desktop-base"/>
-<property name="src" value="src"/>
-<property name="docs" value="docs"/>
-<property name="tmp" value="tmp"/>
-<property name="bin" value="bin"/>
-<target name="compile">
-<mkdir dir="${tmp}"/>
-<javac srcdir="${src}" destdir="${tmp}" debug="on" deprecation="on"/> 
-</target>
+  <target name="init">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <!-- Create the build directory structure used by compile -->
+    <mkdir dir="${build}"/>
+  </target>
 
-<target name="jar" depends="compile" description="cria um .jar file ">
-<mkdir dir="${bin}"/>
-<jar jarfile="${bin}/${name}.jar" basedir="${tmp}"/>
-</target>
+  <target name="compile" depends="init"
+        description="compile the source">
+    <!-- Compile the Java code from ${src} into ${build} -->
+    <javac srcdir="${src}" destdir="${build}"/>
+  </target>
 
-<target name="javadoc" description="Geração de javadocs">
-<javadoc sourcepath="${src}" destdir="${docs}" packagenames="linhacodigo.*"/>
-</target>
-<target name="run" depends="compile,jar,clean" description="inicia aplicação">
-<java classname="${main}" classpath="${bin}/${name}.jar"/>
-</target>
+  <target name="dist" depends="compile"
+        description="generate the distribution">
+    <!-- Create the distribution directory -->
+    <mkdir dir="${dist}/lib"/>
 
+    <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
+    <jar jarfile="${dist}/lib/software-manga-desktop-base.jar" basedir="${build}"/>
+  </target>
+
+  <target name="clean"
+        description="clean up">
+    <!-- Delete the ${build} and ${dist} directory trees -->
+    <delete dir="${build}"/>
+    <delete dir="${dist}"/>
+  </target>
 </project>
